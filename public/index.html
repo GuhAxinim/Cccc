@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Cookies</title>
+  </head>
+  <body>
+    <h1>Cookies</h1>
+    <div id="cookies-container"></div>
+
+    <script>
+      fetch('http://localhost:3000/api/cookies')
+        .then(response => response.json())
+        .then(data => {
+          const cookiesContainer = document.getElementById('cookies-container');
+          if (data && data.cookies) {
+            const ul = document.createElement('ul');
+            data.cookies.forEach(cookie => {
+              const li = document.createElement('li');
+              li.textContent = `${cookie.name}: ${cookie.value}`;
+              ul.appendChild(li);
+            });
+            cookiesContainer.appendChild(ul);
+          } else {
+            cookiesContainer.textContent = 'Nenhum cookie recebido.';
+          }
+        });
+    </script>
+  </body>
+</html>
