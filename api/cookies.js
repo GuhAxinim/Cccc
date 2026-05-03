@@ -1,4 +1,4 @@
-let { app } = require('./cookies.js');
+let { app } = require('./index.js');
 
 const serverlessHandler = app;
 
